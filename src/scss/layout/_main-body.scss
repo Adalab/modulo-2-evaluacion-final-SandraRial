@@ -4,15 +4,31 @@
 }
 
 .both_lists {
- display: flex;
- flex-direction: row;
-
+    display: flex;
+    flex-direction: row;
 }
 .fav_list {
     background-color: bisque;
     color: grey;
+    height: 300px;
+    width: 250px;
+    padding: 5px;
+    margin: 20px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+.all_list {
+    height: 300px;
+    width: 250px;
+    padding: 5px;
+    margin: 20px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
 }
 //Clases para los favoritos
 .cocktail-favorite {
     border: solid 1px blue;
+    background-color: grey;
 }

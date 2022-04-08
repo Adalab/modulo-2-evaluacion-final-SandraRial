@@ -22,14 +22,14 @@ function paintCocktails(drinks) {
     const favoriteFoundIndex = favorites.findIndex(
       (fav) => fav.idDrink === cocktail.idDrink
     );
-    console.log(favoriteFoundIndex);
+    // console.log(favoriteFoundIndex);
     //Dependiendo del valor devuelto, añado la clase o no
     if (favoriteFoundIndex !== -1) {
       classFavorite = 'cocktail-favorite';
     } else {
       classFavorite = '';
     }
-    html += `<li class="js-li ${classFavorite}" id="${cocktail.idDrink}">`;
+    html += `<li class="js-li all_list ${classFavorite}" id="${cocktail.idDrink}">`;
     html += `<h2>${cocktail.strDrink}</h2>`;
     if (cocktail.strDrinkThumb === undefined) {
       html += `<img class="img-small" src="https://via.placeholder.com/210x295/ffffff/666666/?text=TV"/>`;
@@ -68,7 +68,7 @@ function paintFavoritesCocktail(favoriteCocktail) {
 
 // Función manejadora del click
 function handleClickdrinks(event) {
-  console.log(event.currentTarget.id);
+  // console.log(event.currentTarget.id);
 
   //Saber a que cocktail le estoy dando click
   const idCocktailSelected = event.currentTarget.id;
