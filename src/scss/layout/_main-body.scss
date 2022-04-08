@@ -1,0 +1,18 @@
+.img-small {
+    max-height: 200px;
+    max-width: 200px;
+}
+
+.both_lists {
+ display: flex;
+ flex-direction: row;
+
+}
+.fav_list {
+    background-color: bisque;
+    color: grey;
+}
+//Clases para los favoritos
+.cocktail-favorite {
+    border: solid 1px blue;
+}
