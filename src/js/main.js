@@ -6,24 +6,30 @@ let listCocktails = [];
 //constantes que voy a necesitar
 const cocktails = document.querySelector('.js-list');
 const input = document.querySelector('.js-input');
-//const btn = document.querySelector('.js-button');
+const btn = document.querySelector('.js-button');
 const resetBtn = document.querySelector('.js-reset');
 
 //función para pintar el HTML
 function paintCocktails(drinks) {
   let html = '';
   for (const cocktail of drinks) {
-    html += `<li>`;
-    html += `<h1>${cocktail.strDrink}</h1>`;
-    html += `<img class="img-small" src="${cocktail.strDrinkThumb}"/>`;
+    html += `<li class="js-li">`;
+    html += `<h2>${cocktail.strDrink}</h2>`;
+    if (cocktail.strDrinkThumb === undefined) {
+      html += `<img class="img-small" src="https://via.placeholder.com/210x295/ffffff/666666/?text=TV"/>`;
+    } else {
+      html += `<img class="img-small" src="${cocktail.strDrinkThumb}"/>`;
+    }
     html += `</li>`;
   }
   cocktails.innerHTML = html;
+  const liItems = document.querySelectorAll('.js-li');
 }
 
 // función del botón de reset y que se borre la lista de bebidas
 function reset() {
   listCocktails = [];
+  input.value = '';
   paintCocktails(listCocktails);
 }
 
@@ -45,6 +51,5 @@ function getCocktails(event) {
 }
 
 //hacemos un evento click -- que evento hay que hacer?
-//btn.addEventListener('click', getCocktails);
-input.addEventListener('keyup', getCocktails);
+btn.addEventListener('click', getCocktails);
 resetBtn.addEventListener('click', reset);
