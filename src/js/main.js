@@ -1,5 +1,7 @@
 'use strict';
 
+// const { info } = require('node-sass');
+
 //Array con la lista de cocteles vacío
 let listCocktails = [];
 let favorites = [];
@@ -42,7 +44,7 @@ function paintCocktails(drinks) {
 
   //Declaro todas las li
   const liItems = document.querySelectorAll('.js-li');
-
+  console.log(liItems);
   //Añado un evento click a cada li
   for (const item of liItems) {
     item.addEventListener('click', handleClickdrinks);
@@ -65,17 +67,18 @@ function paintFavoritesCocktail(favoriteCocktail) {
   }
   favCocktails.innerHTML = html;
 }
+const listFavoritesStorage = JSON.parse(localStorage.getItem('favCocktails'));
+paintFavoritesCocktail(favorites);
 
 // Función manejadora del click
 function handleClickdrinks(event) {
-  // console.log(event.currentTarget.id);
-
   //Saber a que cocktail le estoy dando click
   const idCocktailSelected = event.currentTarget.id;
+  console.log(idCocktailSelected);
   const cocktailFound = listCocktails.find(
     (fav) => fav.idDrink === idCocktailSelected
   );
-
+  console.log(cocktailFound);
   //comprobamos que el cocktail está en los favoritos
   const favoriteFoundIndex = favorites.findIndex((fav) => {
     return fav.idDrink === idCocktailSelected;
@@ -86,10 +89,23 @@ function handleClickdrinks(event) {
     favorites.splice(favoriteFoundIndex, 1);
   }
   // Aquí lo guardo en el localStorage
-
+  // const listFavoritesStorage = JSON.parse(localStorage.getItem('favCocktails'));
+  if (listFavoritesStorage !== null) {
+    favorites = listFavoritesStorage;
+    paintFavoritesCocktail(favorites);
+  } else {
+    fetch(
+      `https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${input.value}`
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        listCocktails = data.drinks;
+        localStorage.setItem('favCocktails', JSON.stringify(favorites));
+      });
+    // paintFavoritesCocktail(favorites);
+  }
   paintCocktails(listCocktails);
-  paintFavoritesCocktail(favorites);
-  // console.log(favorites);
+  // paintFavoritesCocktail(favorites);
 }
 
 // función del botón de reset y que se borre la lista de bebidas
@@ -101,6 +117,7 @@ function reset() {
 
 // funcion de recoger los cocktails
 function getCocktails(event) {
+  const listFavoritesStorage = JSON.parse(localStorage.getItem('favCocktails'));
   event.preventDefault();
   if (input.value === '') {
     reset();
