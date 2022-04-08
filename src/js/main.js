@@ -32,7 +32,7 @@ function paintCocktails(drinks) {
       classFavorite = '';
     }
     html += `<li class="js-li all_list ${classFavorite}" id="${cocktail.idDrink}">`;
-    html += `<h2>${cocktail.strDrink}</h2>`;
+    html += `<h3>${cocktail.strDrink}</h3>`;
     if (cocktail.strDrinkThumb === undefined) {
       html += `<img class="img-small" src="https://via.placeholder.com/210x295/ffffff/666666/?text=TV"/>`;
     } else {
@@ -44,7 +44,6 @@ function paintCocktails(drinks) {
 
   //Declaro todas las li
   const liItems = document.querySelectorAll('.js-li');
-  console.log(liItems);
   //Añado un evento click a cada li
   for (const item of liItems) {
     item.addEventListener('click', handleClickdrinks);
@@ -57,7 +56,7 @@ function paintFavoritesCocktail(favoriteCocktail) {
   for (const favCocktails of favoriteCocktail) {
     let classFavorite = '';
     html += `<li class="js-li fav_list ${classFavorite} " id="${favCocktails.idDrink}">`;
-    html += `<h2>${favCocktails.strDrink}</h2>`;
+    html += `<h3>${favCocktails.strDrink}</h3>`;
     if (favCocktails.strDrinkThumb === undefined) {
       html += `<img class="img-small" src="https://via.placeholder.com/210x295/ffffff/666666/?text=TV"/>`;
     } else {
@@ -67,18 +66,14 @@ function paintFavoritesCocktail(favoriteCocktail) {
   }
   favCocktails.innerHTML = html;
 }
-const listFavoritesStorage = JSON.parse(localStorage.getItem('favCocktails'));
-paintFavoritesCocktail(favorites);
 
 // Función manejadora del click
 function handleClickdrinks(event) {
   //Saber a que cocktail le estoy dando click
   const idCocktailSelected = event.currentTarget.id;
-  console.log(idCocktailSelected);
   const cocktailFound = listCocktails.find(
     (fav) => fav.idDrink === idCocktailSelected
   );
-  console.log(cocktailFound);
   //comprobamos que el cocktail está en los favoritos
   const favoriteFoundIndex = favorites.findIndex((fav) => {
     return fav.idDrink === idCocktailSelected;
@@ -89,7 +84,6 @@ function handleClickdrinks(event) {
     favorites.splice(favoriteFoundIndex, 1);
   }
   // Aquí lo guardo en el localStorage
-  // const listFavoritesStorage = JSON.parse(localStorage.getItem('favCocktails'));
   if (listFavoritesStorage !== null) {
     favorites = listFavoritesStorage;
     paintFavoritesCocktail(favorites);
@@ -102,10 +96,9 @@ function handleClickdrinks(event) {
         listCocktails = data.drinks;
         localStorage.setItem('favCocktails', JSON.stringify(favorites));
       });
-    // paintFavoritesCocktail(favorites);
+    paintFavoritesCocktail(favorites);
   }
   paintCocktails(listCocktails);
-  // paintFavoritesCocktail(favorites);
 }
 
 // función del botón de reset y que se borre la lista de bebidas
@@ -115,9 +108,10 @@ function reset() {
   paintCocktails(listCocktails);
 }
 
-// funcion de recoger los cocktails
+const listFavoritesStorage = JSON.parse(localStorage.getItem('favCocktails'));
+
+// funcion de recoger los cocktails -- 1 FUNCION EN EJECUTARSE
 function getCocktails(event) {
-  const listFavoritesStorage = JSON.parse(localStorage.getItem('favCocktails'));
   event.preventDefault();
   if (input.value === '') {
     reset();
@@ -131,6 +125,7 @@ function getCocktails(event) {
         paintCocktails(listCocktails);
       });
   }
+  paintFavoritesCocktail(favorites);
 }
 
 //hacemos un evento click -- que evento hay que hacer?
