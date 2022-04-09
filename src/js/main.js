@@ -114,7 +114,7 @@ function handleClickdrinks(event) {
   paintCocktails(listCocktails);
 }
 
-// funcion de recoger los cocktails -- 1 FUNCION EN EJECUTARSE
+// funcion de recoger los cocktails
 function getCocktails(event) {
   event.preventDefault();
   if (input.value === '') {
@@ -132,7 +132,7 @@ function getCocktails(event) {
   paintFavoritesCocktail(favorites);
 }
 
-//hacemos un evento click -- que evento hay que hacer?
+//hacemos un evento click --
 btn.addEventListener('click', getCocktails);
 resetBtn.addEventListener('click', reset);
 resetFavBtn.addEventListener('click', resetFavourites);

@@ -5,7 +5,7 @@
 }
 .section {
     background-color: rgb(210, 243, 243);
-    height: 100vh;
+    height: 100%;
     &__title {
         color: rgb(90, 107, 232);
         padding: 10px;
@@ -50,12 +50,35 @@
 }
 
 .both_lists {
-    display: flex;
-    flex-direction: row;
+    width: 100vw;
+    //height: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: auto;
+    &__favorit {
+        // display: grid;
+        // grid-template-columns: 1fr;
+        // grid-template-rows: auto;
+    }
+    &__list {
+        display: grid;
+        grid-column: 2 / 4;
+        grid-template-rows: auto;
+    }
+}
+// .list {
+//     display: grid;
+//     grid-template-columns: span 2;
+//     height: auto;
+// }
+.favorit {
+    display: grid;
+    grid-template-columns: 1fr;
+    height: auto;
 }
 .fav_list {
-    background-color: rgb(250, 221, 174);
-    color: grey;
+    border: solid 1px rgb(90, 107, 232);
+    color: rgb(90, 107, 232);
     height: 190px;
     width: 200px;
     padding: 5px;
@@ -75,6 +98,8 @@
 }
 //Clases para los favoritos
 .cocktail-favorite {
-    border: solid 1px blue;
-    background-color: grey;
+    border: solid 1px rgb(90, 107, 232);
+    background-color:rgb(212, 229, 244);
+    color: rgb(90, 107, 232);
+    gap: 5px;
 }
