@@ -1,6 +1,52 @@
+
 .img-small {
-    max-height: 200px;
-    max-width: 200px;
+    max-height: 150px;
+    max-width: 150px;
+}
+.section {
+    background-color: rgb(210, 243, 243);
+    height: 100vh;
+    &__title {
+        color: rgb(90, 107, 232);
+        padding: 10px;
+        display: flex;
+        justify-content: space-around;
+        font-weight: bold;
+    }
+    &__nav {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        padding: 10px;
+        &--input {
+            height: 30px;
+            width: 250px;
+            padding: 8px;
+            border-color: rgb(90, 107, 232);
+        }
+        &--button {
+            width: 60px;
+            color: rgb(90, 107, 232);
+            border-color: rgb(90, 107, 232);
+            background-color: rgb(212, 229, 244);
+            font-weight: bold;
+        }
+        &--reset {
+            width: 120px;
+            color: rgb(90, 107, 232);
+            border-color: rgb(90, 107, 232);
+            background-color: rgb(212, 229, 244);
+            font-weight: bold;
+        }
+        &--reset-fav {
+            width: 120px;
+            color: rgb(90, 107, 232);
+            border-color: rgb(90, 107, 232);
+            background-color: rgb(212, 229, 244);
+            font-weight: bold;
+        }
+    }
+
 }
 
 .both_lists {
@@ -8,10 +54,10 @@
     flex-direction: row;
 }
 .fav_list {
-    background-color: bisque;
+    background-color: rgb(250, 221, 174);
     color: grey;
-    height: 300px;
-    width: 250px;
+    height: 190px;
+    width: 200px;
     padding: 5px;
     margin: 20px;
     display: flex;
@@ -19,8 +65,8 @@
     flex-direction: column;
 }
 .all_list {
-    height: 300px;
-    width: 250px;
+    height: 190px;
+    width: 200px;
     padding: 5px;
     margin: 20px;
     display: flex;
