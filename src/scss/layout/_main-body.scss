@@ -55,11 +55,11 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: auto;
-    &__favorit {
-        // display: grid;
-        // grid-template-columns: 1fr;
-        // grid-template-rows: auto;
-    }
+    // &__favorit {
+    //     // display: grid;
+    //     // grid-template-columns: 1fr;
+    //     // grid-template-rows: auto;
+    // }
     &__list {
         display: grid;
         grid-column: 2 / 4;
