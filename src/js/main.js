@@ -1,7 +1,5 @@
 'use strict';
 
-// const { info } = require('node-sass');
-
 //Array con la lista de cocteles vacío
 let listCocktails = [];
 let favorites = [];
@@ -12,6 +10,35 @@ const favCocktails = document.querySelector('.js-favorit-list');
 const input = document.querySelector('.js-input');
 const btn = document.querySelector('.js-button');
 const resetBtn = document.querySelector('.js-reset');
+const resetFavBtn = document.querySelector('.js-reset-fav');
+
+// función del botón de reset y que se borre la lista de bebidas
+function reset() {
+  listCocktails = [];
+  input.value = '';
+  paintCocktails(listCocktails);
+}
+
+function resetFavourites() {
+  favorites = [];
+  localStorage.setItem('favCocktails', JSON.stringify(favorites));
+  paintFavoritesCocktail(favorites);
+}
+
+//función para refrescar los listeners al cambiar las listas
+function refresh() {
+  let liItems = document.querySelectorAll('.js-li');
+  //Añado un evento click a cada li
+  for (const item of liItems) {
+    item.addEventListener('click', handleClickdrinks);
+  }
+}
+
+//recuperamos la lista al cargar la web (si había algo guardado)
+if (localStorage.getItem('favCocktails') !== null) {
+  favorites = JSON.parse(localStorage.getItem('favCocktails'));
+  paintFavoritesCocktail(favorites);
+}
 
 //función para pintar el HTML
 function paintCocktails(drinks) {
@@ -33,7 +60,10 @@ function paintCocktails(drinks) {
     }
     html += `<li class="js-li all_list ${classFavorite}" id="${cocktail.idDrink}">`;
     html += `<h3>${cocktail.strDrink}</h3>`;
-    if (cocktail.strDrinkThumb === undefined) {
+    if (
+      cocktail.strDrinkThumb === null ||
+      cocktail.strDrinkThumb === undefined
+    ) {
       html += `<img class="img-small" src="https://via.placeholder.com/210x295/ffffff/666666/?text=TV"/>`;
     } else {
       html += `<img class="img-small" src="${cocktail.strDrinkThumb}"/>`;
@@ -41,13 +71,7 @@ function paintCocktails(drinks) {
     html += `</li>`;
   }
   cocktails.innerHTML = html;
-
-  //Declaro todas las li
-  const liItems = document.querySelectorAll('.js-li');
-  //Añado un evento click a cada li
-  for (const item of liItems) {
-    item.addEventListener('click', handleClickdrinks);
-  }
+  refresh();
 }
 
 //funcion de pintar los favoritos
@@ -65,6 +89,7 @@ function paintFavoritesCocktail(favoriteCocktail) {
     html += `</li>`;
   }
   favCocktails.innerHTML = html;
+  refresh();
 }
 
 // Función manejadora del click
@@ -84,31 +109,10 @@ function handleClickdrinks(event) {
     favorites.splice(favoriteFoundIndex, 1);
   }
   // Aquí lo guardo en el localStorage
-  if (listFavoritesStorage !== null) {
-    favorites = listFavoritesStorage;
-    paintFavoritesCocktail(favorites);
-  } else {
-    fetch(
-      `https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${input.value}`
-    )
-      .then((response) => response.json())
-      .then((data) => {
-        listCocktails = data.drinks;
-        localStorage.setItem('favCocktails', JSON.stringify(favorites));
-      });
-    paintFavoritesCocktail(favorites);
-  }
+  localStorage.setItem('favCocktails', JSON.stringify(favorites));
+  paintFavoritesCocktail(favorites);
   paintCocktails(listCocktails);
 }
-
-// función del botón de reset y que se borre la lista de bebidas
-function reset() {
-  listCocktails = [];
-  input.value = '';
-  paintCocktails(listCocktails);
-}
-
-const listFavoritesStorage = JSON.parse(localStorage.getItem('favCocktails'));
 
 // funcion de recoger los cocktails -- 1 FUNCION EN EJECUTARSE
 function getCocktails(event) {
@@ -131,3 +135,4 @@ function getCocktails(event) {
 //hacemos un evento click -- que evento hay que hacer?
 btn.addEventListener('click', getCocktails);
 resetBtn.addEventListener('click', reset);
+resetFavBtn.addEventListener('click', resetFavourites);
