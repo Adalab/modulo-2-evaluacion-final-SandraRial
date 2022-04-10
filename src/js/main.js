@@ -51,7 +51,7 @@ function paintCocktails(drinks) {
     const favoriteFoundIndex = favorites.findIndex(
       (fav) => fav.idDrink === cocktail.idDrink
     );
-    // console.log(favoriteFoundIndex);
+
     //Dependiendo del valor devuelto, añado la clase o no
     if (favoriteFoundIndex !== -1) {
       classFavorite = 'cocktail-favorite';
@@ -132,7 +132,7 @@ function getCocktails(event) {
   paintFavoritesCocktail(favorites);
 }
 
-//hacemos un evento click --
+//hacemos un evento click
 btn.addEventListener('click', getCocktails);
 resetBtn.addEventListener('click', reset);
 resetFavBtn.addEventListener('click', resetFavourites);
