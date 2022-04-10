@@ -1,61 +1,3 @@
-.section {
-    height: 100%;
-    &__title {
-        color: $color-fourth;
-        padding: 30px;
-        display: flex;
-        justify-content: space-around;
-        font-weight: bold;
-        text-transform: uppercase;
-    }
-    &__nav {
-        display: flex;
-        justify-content: center;
-        gap: 10px;
-        padding: 10px;
-        &--input {
-            height: 30px;
-            width: 250px;
-            padding: 8px;
-            border-color:$color-primary;
-        }
-        &--button {
-            width: 80px;
-            color: $color-primary;
-            border-color: $color-primary;
-            background-color: $color-secondary;
-            font-weight: bold;
-            border-radius: 10px;
-            &:hover {
-                cursor: pointer;
-            }
-        }
-        &--reset {
-            width: 120px;
-            color: $color-primary;
-            border-color:  $color-primary;
-            background-color: $color-secondary;
-            font-weight: bold;
-            border-radius: 10px;
-            &:hover {
-                cursor: pointer;
-            }
-        }
-        &--reset-fav {
-            width: 120px;
-            color: $color-primary;
-            border-color:  $color-primary;
-            background-color: $color-secondary;
-            font-weight: bold;
-            border-radius: 10px;
-            &:hover {
-                cursor: pointer;
-            }
-        }
-    }
-
-}
-
 .both_lists {
     width: 100vw;
     height: 100%;
@@ -67,6 +9,7 @@
         grid-template-rows: 60px 250px;
         &--title {
             display: grid;
+            grid-template-rows: 60px;
             justify-items: center;
             color: $color-primary;
             text-decoration: underline;
@@ -75,16 +18,17 @@
         &--favorites {
             display: grid;
             justify-items: center;
+
         }
     }
      &__list {
         display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
+        //grid-template-columns: 1fr 1fr 1fr;
         grid-template-rows: 60px auto;
         &--title {
             display: grid;
-            grid-column: 1/5;
-            grid-template-rows: 1fr;
+            //grid-column: 1fr;
+            grid-template-rows: 60px;
             justify-items: center;
             color:$color-primary;
             text-decoration: underline;
@@ -106,20 +50,20 @@
 .fav_list {
     border: solid 1px $color-tertiary;
     color: $color-fourth;
-    height: 175px;
+    height: 185px;
     width: 180px;
     padding: 5px;
     margin: 20px;
     display: flex;
     align-items: center;
     flex-direction: column;
-    :hover {
+    &:hover {
         cursor: pointer;
     }
 }
 
 .all_list {
-    height: 175px;
+    height: 185px;
     width: 180px;
     padding: 5px;
     margin: 20px;

@@ -1,0 +1,63 @@
+.section {
+    height: 100%;
+   
+    &__title {
+        color: $color-fourth;
+        padding: 30px;
+        display: flex;
+        justify-content: space-around;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+
+    &__nav {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        padding: 10px;
+
+        &--input {
+            height: 30px;
+            width: 250px;
+            padding: 8px;
+            border-color: $color-primary;
+        }
+
+        &--button {
+            width: 80px;
+            color: $color-primary;
+            border-color: $color-primary;
+            background-color: $color-secondary;
+            font-weight: bold;
+            border-radius: 10px;
+            &:hover {
+                cursor: pointer;
+            }
+        }
+
+        &--reset {
+            width: 120px;
+            color: $color-primary;
+            border-color: $color-primary;
+            background-color: $color-secondary;
+            font-weight: bold;
+            border-radius: 10px;
+            &:hover {
+                cursor: pointer;
+            }
+        }
+
+        &--reset-fav {
+            width: 120px;
+            color: $color-primary;
+            border-color: $color-primary;
+            background-color: $color-secondary;
+            font-weight: bold;
+            border-radius: 10px;
+            &:hover {
+                cursor: pointer;
+            }
+        }
+    }
+
+}
