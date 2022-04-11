@@ -23,11 +23,9 @@
     }
      &__list {
         display: grid;
-        //grid-template-columns: 1fr 1fr 1fr;
         grid-template-rows: 60px auto;
         &--title {
             display: grid;
-            //grid-column: 1fr;
             grid-template-rows: 60px;
             justify-items: center;
             color:$color-primary;
