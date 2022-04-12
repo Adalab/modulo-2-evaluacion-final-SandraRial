@@ -9,6 +9,7 @@ const input = document.querySelector('.js-input');
 const btn = document.querySelector('.js-button');
 const resetBtn = document.querySelector('.js-reset');
 const resetFavBtn = document.querySelector('.js-reset-fav');
+const logBtn = document.querySelector('.js-log');
 
 function reset() {
   listCocktails = [];
@@ -27,6 +28,9 @@ function refresh() {
   for (const item of liItems) {
     item.addEventListener('click', handleClickdrinks);
   }
+}
+function logButton() {
+  console.log(`Tienes ${favorites.length} favoritos`);
 }
 
 if (localStorage.getItem('favCocktails') !== null) {
@@ -52,6 +56,12 @@ function paintCocktails(drinks) {
       html += `<img class="img-small" src="https://via.placeholder.com/210x295/ffffff/666666/?text=TV"/>`;
     } else {
       html += `<img class="img-small" src="${cocktail.strDrinkThumb}"/>`;
+    }
+    html += `<p>${cocktail.strIngredient1}, ${cocktail.strIngredient2}, ${cocktail.strIngredient3},</p>`;
+    if (cocktail.strIngredient4 === null) {
+      html += '';
+    } else {
+      html += `<p> ${cocktail.strIngredient4}</p>`;
     }
     html += `</li>`;
   }
@@ -114,3 +124,4 @@ function getCocktails(event) {
 btn.addEventListener('click', getCocktails);
 resetBtn.addEventListener('click', reset);
 resetFavBtn.addEventListener('click', resetFavourites);
+logBtn.addEventListener('click', logButton);
